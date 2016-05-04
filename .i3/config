@@ -150,7 +150,7 @@ bar {
 bindsym $mod+shift+m exec sleep 1 && xset dpms force off
 
 exec buildnotifyapplet.py
-exec startup_scripts
+exec ~/.oh_my_bash/bin/startup_scripts
 
 #Multi Monitor Setup with xrandr
 bindsym $mod+shift+d  exec xrandr --output HDMI1 --off --output LVDS1 --mode 1366x768 --pos 1080x0 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output VGA1 --mode 1920x1080 --pos 0x0 --rotate left

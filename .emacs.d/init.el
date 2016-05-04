@@ -8,7 +8,7 @@
 ;; No splash screen please... jeez
 (setq inhibit-startup-screen t)
 
-;;IDO-mode
+;; IDO-mode
 (ido-mode t)
 
 ;;;; package.el
@@ -35,9 +35,10 @@
  )
 
 (load-theme 'spacemacs-dark t)
+;;(load-theme 'misterioso t)
 
 
-;;Awesome Package Installer
+;; Awesome Package Installer
 (defvar awesome-packages
   '(
     ag
@@ -67,6 +68,10 @@
     emoji-cheat-sheet-plus
     ac-emoji
     fancy-battery
+    company-emoji
+    confluence
+    go-autocomplete
+    go-mode
     ))
 
 (defun install-awesome-packages ()
@@ -79,10 +84,10 @@
         awesome-packages))
 
 
-;;Enable Packages
+;; Enable Packages
 (evil-mode t)
 
-;;Elips Related functionality
+;; Elips Related functionality
 (defun elisp-group()
   (setq imenu-prev-index-position-function nil)
   (add-to-list 'imenu-generic-expression '("Sections" "^;;;; \\(.+\\)$" 1) t))
@@ -90,36 +95,46 @@
 (add-hook 'emacs-lisp-mode-hook 'elisp-group)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
-;;Spaceline
+;; Spaceline
 (require 'spaceline-config)
 ;;Theme alternates for spaceline.
 ;;(spaceline-spacemacs-theme)
 (spaceline-emacs-theme)
 
-;;Emoji Cheetsheet
+;; Emoji Cheetsheet
 (add-to-list 'load-path "~/.emacs.d/elpa/emoji-cheat-sheet-plus-20150617.631/emoji-cheat-sheet/")
 (require 'emoji-cheat-sheet-plus)
 
-;;Fancy Battery
+;; Fancy Battery
 (add-hook 'after-init-hook #'fancy-battery-mode)
 (display-battery-mode t)
 
-;;Desktop Save Mode
+;; Desktop Save Mode
 (desktop-save-mode 1)
 
-;;Org Mode Dropbox
-;;Set org local files directory.
+;; Org Mode Dropbox
+;; Set org local files directory.
 (setq org-directory "~/Dropbox/miNotes")
-(setq org-agenda-files '("~/Dropbox/miNotes/tasklist.org"))
-;;Set the file name where new notes will be stored.
-(setq org-mobile-inbox-for-pull "~/Dropbox/miNotes/tasklist.org")
-;;Org mobile directory.
+(setq org-agenda-files '("~/Dropbox/miNotes/index.org"))
+;; Set the file name where new notes will be stored.
+(setq org-mobile-inbox-for-pull "~/Dropbox/miNotes/index.org")
+;; Org mobile directory.
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
-;;Org Pomodoro
-;;Set Default timer value
+;; Org Pomodoro
+;; Set Default timer value
 (setq org-timer-default-timer 25)
 ;; Timer is started with default value unless the Timer is already Begun.
 (add-hook 'org-clock-in-hook (lambda ()
       (if (not org-timer-current-timer) 
 	  (org-timer-set-timer '(16)))))
+
+;; Company Emoji mode.
+(require 'company-emoji)
+(add-to-list 'company-backends 'company-emoji)
+
+;;Tuareg mode for ocaml
+(load "/home/pd/.opam/system/share/emacs/site-lisp/tuareg-site-file")
+
+;;caml-mode
+(add-to-list 'load-path "/home/pd/.opam/system/share/emacs/site-lisp/")
